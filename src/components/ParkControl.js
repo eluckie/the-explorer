@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddPark from "./AddPark";
 import EditPark from "./EditPark";
 import DeleteConfirmation from "./DeleteConfirmation";
@@ -12,8 +12,29 @@ function ParkControl() {
   const [mainParkList, setMainParkList] = useState([]);
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    fetch("http://localhost:5002/api/Parks")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status}: ${response.statusText}`);
+        } else {
+          return response.json()
+        }
+      })
+      .then((jsonResponse) => {
+        setMainParkList(jsonResponse.queriedParks)
+      })
+      .catch((error) => {
+        setError(error)
+      });
+  }, [])
+
   if(error) {
-    return <h3>There was an error: {error}</h3>;
+    return (
+      <>
+        <h3>There was an error: {error.message}</h3>
+      </>
+    );
   } else {
     return (
       <Routes>
