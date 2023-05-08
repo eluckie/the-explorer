@@ -39,7 +39,7 @@ _{This is a detailed description of your application. Give as much detail as nee
 1. Clone this repository to your desktop
 2. Navigate to the top level of this directory called ``the-explorer``
 3. Run the code ``npm install`` in your terminal to install the necessary packages and plug-ins
-4. Run the code ``npm run start`` in your terminal to start the application and open the project in your web browser\
+4. Run the code ``npm run start`` in your terminal to start the application and open the project in your web browser
 
 **NOTE:** both the Parks API _and_ this React project must be actively running in order to function properly. If something is not working, revisit the set up instructions for both projects
 
