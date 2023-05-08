@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/sign-in" element={<SignIn/>}/>
         <Route path="/sign-up" element={<SignUp/>}/>
-        <Route path="/" element={<ParkControl
+        <Route path="*" element={<ParkControl
           user={currentUser}/>}/>
       </Routes>
       <Footer/>
