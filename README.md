@@ -23,10 +23,10 @@ _{This is a detailed description of your application. Give as much detail as nee
 ## Diagrams
 
 #### Site Diagram
-![site diagram]()
+![site diagram](./src/img/site-diagram.png)
 
 #### Component Diagram
-![component diagram]()
+![component diagram](./src/img/component-diagram.png)
 
 ## Setup/Installation Requirements
 
