@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# The Explorer
+
+#### By E. Luckie ☀️
+
+#### This application was made as a front-end that consumes information from [this API](https://github.com/eluckie/ParksApi.Solution.git) about National & State Parks. Users are able to see a list of all parks, as well as add parks, edit, or delete parks. 
+
+## Technologies Used
+
+* React
+* JSX
+* JavaScript
+* HTML
+* CSS
+* Markdown
+* Git
+
+## Description
+
+_{This is a detailed description of your application. Give as much detail as needed to explain what the application does as well as any other information you want users or other developers to have.}_
+
+[Click here](https://eluckie.github.io/the-explorer/) to view the live version of this webpage.
+
+## Diagrams
+
+#### Site Diagram
+![site diagram]()
+
+#### Component Diagram
+![component diagram]()
+
+## Setup/Installation Requirements
+
+### To Install and Run The API
+1. First, [go here](https://github.com/eluckie/ParksApi.Solution.git) and follow all directions in the README to get the API up and running
+2. Once the API is running in either development or production mode, follow the below instructions to install and run this project
+
+### To Install and Run This Project
+
+1. Clone this repository to your desktop
+2. Navigate to the top level of this directory called ``the-explorer``
+3. Run the code ``npm install`` in your terminal to install the necessary packages and plug-ins
+4. Run the code ``npm run start`` in your terminal to start the application and open the project in your web browser\
+
+**NOTE:** both the Parks API _and_ this React project must be actively running in order to function properly. If something is not working, revisit the set up instructions for both projects
+
+## Known Bugs
+
+* _Any known issues_
+* _should go here_
+
+## Stretch Plans
+
+* Add a ``RANDOM`` endpoint that randomly returns a park.
+* Add a second custom endpoint that accepts parameters. Example: a ``SEARCH`` route that allows users to search by specific park names.
+
+## License
+
+MIT License
+
+Copyright (c) 2023 Luckie
+
+__________
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
