@@ -1,12 +1,7 @@
 import PropTypes from "prop-types";
 
 function FilterParks(props) {
-  const { onUpdatePageSize, onResetFilters, onUpdateParkType, onUpdateCity, onUpdateState } = props;
-
-  function handleUpdatePageSize(e) {
-    e.preventDefault();
-    onUpdatePageSize(parseInt(e.target.page.value));
-  }
+  const { onResetFilters, onUpdateParkType, onUpdateCity, onUpdateState } = props;
 
   function handleUpdateParkType(e) {
     e.preventDefault();
@@ -53,16 +48,6 @@ function FilterParks(props) {
           placeholder="search by state"/>
         <button type="submit">🔎</button>
       </form>
-      <br/>
-      <form id="page-size" onSubmit={handleUpdatePageSize}>
-        <select id="page">
-          <option value="10">10 per page</option>
-          <option value="25">25 per page</option>
-          <option value="50">50 per page</option>
-          <option value="100">view all</option>
-        </select>
-        <button type="submit">apply</button>
-      </form>
       <br/><br/>
       <button onClick={onResetFilters}>reset all</button>
     </>
@@ -70,7 +55,6 @@ function FilterParks(props) {
 }
 
 FilterParks.propTypes = {
-  onUpdatePageSize: PropTypes.func,
   onResetFilters: PropTypes.func,
   onUpdateParkType: PropTypes.func,
   onUpdateCity: PropTypes.func,

@@ -4,7 +4,7 @@ import StateIcon from "./../img/state.png";
 import NatlIcon from "./../img/natl.png";
 
 function ParkList(props) {
-  const { onPreviousClick, onNextClick, parkList, currentPage, matchingParkCount, pageSize } = props;
+  const { onPreviousClick, onNextClick, parkList, currentPage, matchingParkCount, pageSize, onUpdatePageSize } = props;
 
   const findPagesNeeded = () => {
     const remainder = matchingParkCount % pageSize;
@@ -13,6 +13,11 @@ function ParkList(props) {
     } else {
       return matchingParkCount / pageSize;
     }
+  }
+
+  function handleUpdatePageSize(e) {
+    e.preventDefault();
+    onUpdatePageSize(parseInt(e.target.page.value));
   }
 
   const divStyles = {
@@ -64,6 +69,15 @@ function ParkList(props) {
         )}
         <br/>
         <p>{matchingParkCount} parks</p>
+        <form id="page-size" onSubmit={handleUpdatePageSize}>
+        <select id="page">
+          <option value="10">10 per page</option>
+          <option value="25">25 per page</option>
+          <option value="50">50 per page</option>
+          <option value="100">view all</option>
+        </select>
+        <button type="submit">update</button>
+      </form>
       </>
     );
   }
@@ -73,6 +87,7 @@ ParkList.propTypes = {
   parkList: PropTypes.array,
   onPreviousClick: PropTypes.func,
   onNextClick: PropTypes.func,
+  onUpdatePageSize: PropTypes.func,
   currentPage: PropTypes.number
 };
 

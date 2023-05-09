@@ -39,9 +39,11 @@ function ParkControl() {
     if (type === "nationalPark") {
       setNatlPark("&nationalPark=true");
       setStatePark("");
+      setPage(1);
     } else {
       setStatePark("&statePark=true");
       setNatlPark("");
+      setPage(1);
     };
   }
 
@@ -57,12 +59,10 @@ function ParkControl() {
 
   const handleResetFilters = () => {
     setPage(1);
-    setPageSize(10);
     setStatePark("");
     setNatlPark("");
     setCity("");
     setState("");
-    document.getElementById("page-size").reset();
     document.getElementById("state-or-natl").reset();
     document.getElementById("city-search").reset();
     document.getElementById("state-search").reset();
@@ -105,7 +105,6 @@ function ParkControl() {
         <Route path="/" element={
           <>
             <FilterParks
-              onUpdatePageSize={handleUpdatePageSize}
               onUpdateParkType={handleUpdateParkType}
               onUpdateCity={handleUpdateCity}
               onUpdateState={handleUpdateState}
@@ -116,7 +115,8 @@ function ParkControl() {
               currentPage={page}
               pageSize={pageSize}
               onNextClick={handleNextClick}
-              onPreviousClick={handlePreviousClick}/>
+              onPreviousClick={handlePreviousClick}
+              onUpdatePageSize={handleUpdatePageSize}/>
           </>}/>
       </Routes>
     )
