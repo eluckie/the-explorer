@@ -14,8 +14,10 @@ function ParkControl() {
   const [ready, setReady] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  
-  let url = `http://localhost:5002/api/Parks?page=${page}&pageSize=${pageSize}`;
+  const [natlPark, setNatlPark] = useState("");
+  const [statePark, setStatePark] = useState("");
+
+  let url = `http://localhost:5002/api/Parks?page=${page}&pageSize=${pageSize}${natlPark}${statePark}`;
 
   const handleNextClick = () => {
     setPage(page + 1);
@@ -29,6 +31,25 @@ function ParkControl() {
 
   const handleUpdatePageSize = (newSize) => {
     setPageSize(newSize);
+  }
+
+  const handleUpdateParkType = (type) => {
+    if (type === "nationalPark") {
+      setNatlPark("&nationalPark=true");
+      setStatePark("");
+    } else {
+      setStatePark("&statePark=true");
+      setNatlPark("");
+    };
+  }
+
+  const handleResetFilters = () => {
+    setPage(1);
+    setPageSize(10);
+    setStatePark("");
+    setNatlPark("");
+    document.getElementById("page-size").reset();
+    document.getElementById("state-or-natl").reset();
   }
 
   useEffect(() => {
@@ -67,7 +88,9 @@ function ParkControl() {
         <Route path="/" element={
           <>
             <FilterParks
-              onUpdatePageSize={handleUpdatePageSize}/>
+              onUpdatePageSize={handleUpdatePageSize}
+              onUpdateParkType={handleUpdateParkType}
+              onResetFilters={handleResetFilters}/>
             <ParkList
               parkList={mainParkList}
               currentPage={page}

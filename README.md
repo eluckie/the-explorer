@@ -45,8 +45,7 @@ _{This is a detailed description of your application. Give as much detail as nee
 
 ## Known Bugs
 
-* _Any known issues_
-* _should go here_
+* can still continue to view pages past where there is data
 
 ## Stretch Plans
 
