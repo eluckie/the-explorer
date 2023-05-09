@@ -11,9 +11,25 @@ function ParkControl() {
   const [selectedPark, setSelectedPark] = useState(null);
   const [mainParkList, setMainParkList] = useState([]);
   const [error, setError] = useState(null);
+  const [ready, setReady] = useState(false);
+  const [page, setPage] = useState(1);
+
+  let pageSize = 10;
+  
+  let url = `http://localhost:5002/api/Parks?page=${page}&pageSize=${pageSize}`;
+
+  const handleNextClick = () => {
+    setPage(page + 1);
+  }
+
+  const handlePreviousClick = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    };
+  }
 
   useEffect(() => {
-    fetch("http://localhost:5002/api/Parks")
+    fetch(`${url}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status}: ${response.statusText}`);
@@ -23,18 +39,18 @@ function ParkControl() {
       })
       .then((jsonResponse) => {
         setMainParkList(jsonResponse.queriedParks)
+        setReady(true)
       })
       .catch((error) => {
         setError(error)
+        setReady(true)
       });
-  }, [])
+  }, [url])
 
   if(error) {
-    return (
-      <>
-        <h3>There was an error: {error.message}</h3>
-      </>
-    );
+    return <h3>There was an error: {error.message}</h3>
+  } else if (!ready) {
+    return <h1>... l o a d i n g ...</h1>
   } else {
     return (
       <Routes>
@@ -49,7 +65,10 @@ function ParkControl() {
           <>
             <FilterParks/>
             <ParkList
-              parkList={mainParkList}/>
+              parkList={mainParkList}
+              currentPage={page}
+              onNextClick={handleNextClick}
+              onPreviousClick={handlePreviousClick}/>
           </>}/>
       </Routes>
     )
