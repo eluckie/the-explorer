@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 function FilterParks(props) {
-  const { onUpdatePageSize, onResetFilters, onUpdateParkType } = props;
+  const { onUpdatePageSize, onResetFilters, onUpdateParkType, onUpdateCity, onUpdateState } = props;
 
   function handleUpdatePageSize(e) {
     e.preventDefault();
@@ -11,6 +11,16 @@ function FilterParks(props) {
   function handleUpdateParkType(e) {
     e.preventDefault();
     onUpdateParkType(e.target.parkType.value);
+  }
+
+  function handleUpdateCity(e) {
+    e.preventDefault();
+    onUpdateCity((e.target.cityName.value).toLowerCase());
+  }
+
+  function handleUpdateState(e) {
+    e.preventDefault();
+    onUpdateState((e.target.stateName.value).toLowerCase());
   }
 
   return (
@@ -27,6 +37,21 @@ function FilterParks(props) {
           State Parks
         </label><br />
         <button type="submit">apply</button>
+      </form>
+      <br/>
+      <form id="city-search" onSubmit={handleUpdateCity}>
+        <input
+          type="text"
+          name="cityName"
+          placeholder="search by city"/>
+        <button type="submit">🔎</button>
+      </form>
+      <form id="state-search" onSubmit={handleUpdateState}>
+        <input
+          type="text"
+          name="stateName"
+          placeholder="search by state"/>
+        <button type="submit">🔎</button>
       </form>
       <br/>
       <form id="page-size" onSubmit={handleUpdatePageSize}>
@@ -47,7 +72,9 @@ function FilterParks(props) {
 FilterParks.propTypes = {
   onUpdatePageSize: PropTypes.func,
   onResetFilters: PropTypes.func,
-  onUpdateParkType: PropTypes.func
+  onUpdateParkType: PropTypes.func,
+  onUpdateCity: PropTypes.func,
+  onUpdateState: PropTypes.func
 };
 
 export default FilterParks;

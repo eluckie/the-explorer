@@ -16,8 +16,10 @@ function ParkControl() {
   const [pageSize, setPageSize] = useState(10);
   const [natlPark, setNatlPark] = useState("");
   const [statePark, setStatePark] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
 
-  let url = `http://localhost:5002/api/Parks?page=${page}&pageSize=${pageSize}${natlPark}${statePark}`;
+  let url = `http://localhost:5002/api/Parks?page=${page}&pageSize=${pageSize}${natlPark}${statePark}${city}${state}`;
 
   const handleNextClick = () => {
     setPage(page + 1);
@@ -43,13 +45,26 @@ function ParkControl() {
     };
   }
 
+  const handleUpdateCity = (city) => {
+    setCity(`&city=${city}`);
+    setPage(1);
+  }
+
+  const handleUpdateState = (state) => {
+    setState(`&state=${state}`);
+    setPage(1);
+  }
+
   const handleResetFilters = () => {
     setPage(1);
     setPageSize(10);
     setStatePark("");
     setNatlPark("");
+    setCity("");
     document.getElementById("page-size").reset();
     document.getElementById("state-or-natl").reset();
+    document.getElementById("city-search").reset();
+    document.getElementById("state-search").reset();
   }
 
   useEffect(() => {
@@ -90,6 +105,8 @@ function ParkControl() {
             <FilterParks
               onUpdatePageSize={handleUpdatePageSize}
               onUpdateParkType={handleUpdateParkType}
+              onUpdateCity={handleUpdateCity}
+              onUpdateState={handleUpdateState}
               onResetFilters={handleResetFilters}/>
             <ParkList
               parkList={mainParkList}
