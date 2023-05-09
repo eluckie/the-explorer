@@ -13,8 +13,7 @@ function ParkControl() {
   const [error, setError] = useState(null);
   const [ready, setReady] = useState(false);
   const [page, setPage] = useState(1);
-
-  let pageSize = 10;
+  const [pageSize, setPageSize] = useState(10);
   
   let url = `http://localhost:5002/api/Parks?page=${page}&pageSize=${pageSize}`;
 
@@ -26,6 +25,10 @@ function ParkControl() {
     if (page > 1) {
       setPage(page - 1);
     };
+  }
+
+  const handleUpdatePageSize = (newSize) => {
+    setPageSize(newSize);
   }
 
   useEffect(() => {
@@ -63,7 +66,8 @@ function ParkControl() {
           park={selectedPark}/>}/>
         <Route path="/" element={
           <>
-            <FilterParks/>
+            <FilterParks
+              onUpdatePageSize={handleUpdatePageSize}/>
             <ParkList
               parkList={mainParkList}
               currentPage={page}
