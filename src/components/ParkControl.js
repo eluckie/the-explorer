@@ -14,6 +14,7 @@ function ParkControl() {
   const [ready, setReady] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const [matchingParkCount, setMatchingParkCount] = useState(0);
   const [natlPark, setNatlPark] = useState("");
   const [statePark, setStatePark] = useState("");
   const [city, setCity] = useState("");
@@ -26,13 +27,12 @@ function ParkControl() {
   }
 
   const handlePreviousClick = () => {
-    if (page > 1) {
-      setPage(page - 1);
-    };
+    setPage(page - 1);
   }
 
   const handleUpdatePageSize = (newSize) => {
     setPageSize(newSize);
+    setPage(1);
   }
 
   const handleUpdateParkType = (type) => {
@@ -61,6 +61,7 @@ function ParkControl() {
     setStatePark("");
     setNatlPark("");
     setCity("");
+    setState("");
     document.getElementById("page-size").reset();
     document.getElementById("state-or-natl").reset();
     document.getElementById("city-search").reset();
@@ -78,6 +79,7 @@ function ParkControl() {
       })
       .then((jsonResponse) => {
         setMainParkList(jsonResponse.queriedParks)
+        setMatchingParkCount(jsonResponse.matchingParks)
         setReady(true)
       })
       .catch((error) => {
@@ -110,7 +112,9 @@ function ParkControl() {
               onResetFilters={handleResetFilters}/>
             <ParkList
               parkList={mainParkList}
+              matchingParkCount={matchingParkCount}
               currentPage={page}
+              pageSize={pageSize}
               onNextClick={handleNextClick}
               onPreviousClick={handlePreviousClick}/>
           </>}/>

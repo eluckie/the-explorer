@@ -64,7 +64,7 @@ function FilterParks(props) {
         <button type="submit">apply</button>
       </form>
       <br/><br/>
-      <button onClick={onResetFilters}>clear filters</button>
+      <button onClick={onResetFilters}>reset all</button>
     </>
   );
 }
