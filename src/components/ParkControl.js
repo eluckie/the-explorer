@@ -6,8 +6,11 @@ import FilterParks from "./FilterParks";
 import ParkList from "./ParkList";
 import ParkDetails from "./ParkDetails";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function ParkControl() {
+function ParkControl(props) {
+  const { currentUser } = props;
+
   const [selectedPark, setSelectedPark] = useState(null);
   const [mainParkList, setMainParkList] = useState([]);
   const [error, setError] = useState(null);
@@ -76,6 +79,43 @@ function ParkControl() {
     navigate("/details");
   }
 
+  const handleAddingNewPark = async (newPark) => {
+    setReady(false);
+
+    const parkData = {
+      name: newPark.name,
+      city: newPark.city,
+      state: newPark.state,
+      statePark: newPark.statePark,
+      nationalPark: newPark.nationalPark
+    };
+
+    fetch("http://localhost:5002/api/Parks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(parkData)
+    })
+    .then((response) => {
+      if (!response.ok) {
+        const message = `An error has occurred: ${response.status}: ${response.statusText}`;
+        throw new Error(message);
+      } else {
+        return response.json()
+        
+      }
+    })
+    .then(() => {
+      setReady(true)
+      navigate("/")
+    })
+    .catch((error) => {
+      setError(error)
+      setReady(true)
+    });
+  }
+
   useEffect(() => {
     fetch(`${url}`)
       .then(response => {
@@ -103,13 +143,18 @@ function ParkControl() {
   } else {
     return (
       <Routes>
-        <Route path="/add-park" element={<AddPark/>}/>
+        <Route path="/add-park" element={<AddPark
+          currentUser={currentUser}
+          onNewParkCreation={handleAddingNewPark}/>}/>
         <Route path="/edit-park" element={<EditPark
-          park={selectedPark}/>}/>
+          park={selectedPark}
+          currentUser={currentUser}/>}/>
         <Route path="/delete-park" element={<DeleteConfirmation
-          park={selectedPark}/>}/>
+          park={selectedPark}
+          currentUser={currentUser}/>}/>
         <Route path="/details" element={<ParkDetails
-          park={selectedPark}/>}/>
+          park={selectedPark}
+          currentUser={currentUser}/>}/>
         <Route path="/" element={
           <>
             <FilterParks
@@ -131,5 +176,9 @@ function ParkControl() {
     )
   }
 }
+
+ParkControl.propTypes = {
+  currentUser: PropTypes.object
+};
 
 export default ParkControl;

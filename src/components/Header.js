@@ -5,35 +5,50 @@ import { signOut } from "firebase/auth";
 import { useState } from "react";
 
 function Header(props) {
+  const { currentUser, setCurrentUser } = props;
+
   const [signOutSuccess, setSignOutSuccess] = useState(null);
 
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
         setSignOutSuccess("You've successfully signed out");
-        props.setCurrentUser(null);
+        setCurrentUser(null);
       })
       .catch((error) => {
         setSignOutSuccess(`There was an error signing out: ${error.message}!`)
       });
   }
 
-  const divStyles = {
-    textAlign: "center"
+  const userStyles = {
+    color: "lightgray",
+    textAlign: "right"
   }
 
-  return (
-    <>
-    <div style={divStyles}>
-      <h1>the Explorer</h1>
-      <p>and into the forest I go, to lose my mind and find my soul</p>
-      <Link to="/sign-up"><button>sign up</button></Link>
-      <Link to="/sign-in"><button>log in</button></Link>
-      <button onClick={handleSignOut}>log out</button>
-      {signOutSuccess}
-    </div>
-    </>
-  );
+  if (!currentUser) {
+    return (
+      <>
+        <div>
+          <h1>the Explorer</h1>
+          <p>and into the forest I go, to lose my mind and find my soul</p>
+          <Link to="/sign-up"><button>sign up</button></Link>
+          <Link to="/sign-in"><button>log in</button></Link>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+      <div>
+        <h1>the Explorer</h1>
+        <p>and into the forest I go, to lose my mind and find my soul</p>
+        <Link to="/add-park"><button>add new park</button></Link>
+        <button onClick={handleSignOut}>log out</button>
+        <p style={userStyles}>{currentUser.email}</p>
+      </div>
+      </>
+    );
+  }
 }
 
 Header.propTypes = {

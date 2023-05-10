@@ -4,10 +4,11 @@ import StateIcon from "./../img/state.png";
 import NatlIcon from "./../img/natl.png";
 
 function ParkDetails(props) {
-  const { park } = props;
+  const { park, currentUser } = props;
 
-  return (
-    <>
+  if (!currentUser) {
+    return (
+      <>
       <div>
         <h3>{park.name}</h3>
         <h5>{park.city}, {park.state}</h5>
@@ -17,17 +18,35 @@ function ParkDetails(props) {
         {`${park.nationalPark}` === `${true}` ? <img src={NatlIcon} alt="icon with 3 trees"/> : <img src={StateIcon} alt="tree icon"/>}
       </div>
       <br/>
-      <Link to="/edit-park"><button>edit park</button></Link>
-      <Link to="/delete-park"><button>delete park</button></Link>
-      <br/><br/>
       <Link to="/">back to list</Link>
       <br/><br/>
     </>
-  );
+    );
+  } else {
+    return (
+      <>
+        <div>
+          <h3>{park.name}</h3>
+          <h5>{park.city}, {park.state}</h5>
+          <p>
+            {`${park.nationalPark}` === `${true}` ? "National Park" : "State Park"}
+          </p>
+          {`${park.nationalPark}` === `${true}` ? <img src={NatlIcon} alt="icon with 3 trees"/> : <img src={StateIcon} alt="tree icon"/>}
+        </div>
+        <br/>
+        <Link to="/edit-park"><button>edit park</button></Link>
+        <Link to="/delete-park"><button>delete park</button></Link>
+        <br/><br/>
+        <Link to="/">back to list</Link>
+        <br/><br/>
+      </>
+    );
+  }
 }
 
 ParkDetails.propTypes = {
-  park: PropTypes.object
+  park: PropTypes.object,
+  currentUser: PropTypes.object
 };
 
 export default ParkDetails;

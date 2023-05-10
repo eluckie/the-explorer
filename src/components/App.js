@@ -24,7 +24,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp
           setCurrentUser={handleSettingCurrentUser}/>}/>
         <Route path="*" element={<ParkControl
-          user={currentUser}/>}/>
+          currentUser={currentUser}/>}/>
       </Routes>
       <Footer/>
     </Router>

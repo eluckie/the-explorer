@@ -36,7 +36,6 @@ function ParkList(props) {
     return (
       <>
         <hr/>
-        <Link to="/add-park"><button>add new park</button></Link>
         <br/><br/>
         <h2>there are no matching parks</h2>
         <p>
@@ -50,7 +49,6 @@ function ParkList(props) {
     return (
       <>
         <hr/>
-        <Link to="/add-park"><button>add new park</button></Link>
         <br/><br/>
         {`${currentPage}` === `${1}` ? "" : <button onClick={onPreviousClick}>&lt;</button>}
         <p style={pageNumberStyles}>{currentPage}</p>
@@ -71,14 +69,14 @@ function ParkList(props) {
         <br/>
         <p>{matchingParkCount} parks</p>
         <form id="page-size" onSubmit={handleUpdatePageSize}>
-        <select id="page">
-          <option value="10">10 per page</option>
-          <option value="25">25 per page</option>
-          <option value="50">50 per page</option>
-          <option value="100">view all</option>
-        </select>
-        <button type="submit">update</button>
-      </form>
+          <select id="page">
+            <option value="10">10 per page</option>
+            <option value="25">25 per page</option>
+            <option value="50">50 per page</option>
+            <option value="100">view all</option>
+          </select>
+          <button type="submit">update</button>
+        </form>
       </>
     );
   }
