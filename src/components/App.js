@@ -9,12 +9,18 @@ import { useState } from 'react';
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
+  const handleSettingCurrentUser = (user) => {
+    setCurrentUser(user);
+  }
+
   return (
     <Router>
       <Header/>
       <Routes>
-        <Route path="/sign-in" element={<SignIn/>}/>
-        <Route path="/sign-up" element={<SignUp/>}/>
+        <Route path="/sign-in" element={<SignIn
+          setCurrentUser={handleSettingCurrentUser}/>}/>
+        <Route path="/sign-up" element={<SignUp
+          setCurrentUser={handleSettingCurrentUser}/>}/>
         <Route path="*" element={<ParkControl
           user={currentUser}/>}/>
       </Routes>
