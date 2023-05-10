@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function EditPark() {
+function EditPark(props) {
+  const { park } = props;
+
   return (
     <>
-      <h3>edit park form</h3>
-      <Link to="/details"><button>cancel</button></Link>
+      <h3>edit {park.name}</h3>
+      <Link to="/details"><p>cancel</p></Link>
     </>
   );
 }
+
+EditPark.propTypes = {
+
+};
 
 export default EditPark;

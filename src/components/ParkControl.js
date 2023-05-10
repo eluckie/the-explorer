@@ -5,7 +5,7 @@ import DeleteConfirmation from "./DeleteConfirmation";
 import FilterParks from "./FilterParks";
 import ParkList from "./ParkList";
 import ParkDetails from "./ParkDetails";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 function ParkControl() {
   const [selectedPark, setSelectedPark] = useState(null);
@@ -19,6 +19,8 @@ function ParkControl() {
   const [statePark, setStatePark] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
+
+  const navigate = useNavigate();
 
   let url = `http://localhost:5002/api/Parks?page=${page}&pageSize=${pageSize}${natlPark}${statePark}${city}${state}`;
 
@@ -66,6 +68,12 @@ function ParkControl() {
     document.getElementById("state-or-natl").reset();
     document.getElementById("city-search").reset();
     document.getElementById("state-search").reset();
+  }
+
+  const handleChangingSelectedPark = async (id) => {
+    const selection = await mainParkList.filter(park => park.parkId === id)[0];
+    setSelectedPark(selection);
+    navigate("/details");
   }
 
   useEffect(() => {
@@ -116,7 +124,8 @@ function ParkControl() {
               pageSize={pageSize}
               onNextClick={handleNextClick}
               onPreviousClick={handlePreviousClick}
-              onUpdatePageSize={handleUpdatePageSize}/>
+              onUpdatePageSize={handleUpdatePageSize}
+              onParkSelection={handleChangingSelectedPark}/>
           </>}/>
       </Routes>
     )

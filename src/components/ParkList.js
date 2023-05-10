@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import StateIcon from "./../img/state.png";
-import NatlIcon from "./../img/natl.png";
+import Park from "./Park";
 
 function ParkList(props) {
-  const { onPreviousClick, onNextClick, parkList, currentPage, matchingParkCount, pageSize, onUpdatePageSize } = props;
+  const { onPreviousClick, onNextClick, parkList, currentPage, matchingParkCount, pageSize, onUpdatePageSize, onParkSelection } = props;
 
   const findPagesNeeded = () => {
     const remainder = matchingParkCount % pageSize;
@@ -59,12 +58,14 @@ function ParkList(props) {
         <br/><br/>
         {parkList.map((park) =>
           <div style={divStyles} key={park.parkId}>
-            <h3>{park.name}</h3>
-            <h5>{park.city}, {park.state}</h5>
-            <p>
-              {`${park.nationalPark}` === `${true}` ? "National Park" : "State Park"}
-            </p>
-            {`${park.nationalPark}` === `${true}` ? <img src={NatlIcon} alt="icon with 3 trees"/> : <img src={StateIcon} alt="tree icon"/>}
+            <Park
+              whenParkClicked={onParkSelection}
+              parkId={park.parkId}
+              name={park.name}
+              city={park.city}
+              state={park.state}
+              nationalPark={park.nationalPark}
+              statePark={park.statePark}/>
           </div>
         )}
         <br/>
