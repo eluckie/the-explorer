@@ -1,14 +1,28 @@
 import { Link } from "react-router-dom";
-import { getAuth } from "firebase/auth";
+import { auth } from "./../firebase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function SignIn() {
+function SignIn(props) {
+  const [signInSuccess, setSignInSuccess] = useState(null);
+
+  const navigate = useNavigate();
 
   function handleSignIn(e) {
     e.preventDefault();
-    const username = e.target.username.value.toLowerCase();
+    const email = e.target.email.value.toLowerCase();
     const password = e.target.password.value;
-
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        setSignInSuccess(`You've successfully signed in as ${userCredential.user.email}!`);
+        props.setCurrentUser(userCredential.user);
+        navigate("/");
+      })
+      .catch((error) => {
+        setSignInSuccess(`There was an error signing in: ${error.message}`)
+      });
   }
 
   return (
@@ -16,11 +30,12 @@ function SignIn() {
       <br/>
       <hr/>
       <br/>
+      {signInSuccess}
       <form id="sign-in" onSubmit={handleSignIn}>
         <input
           type="text"
-          name="username"
-          placeholder="username"/>
+          name="email"
+          placeholder="email"/>
         <br/>
         <input
           type="password"
@@ -33,5 +48,9 @@ function SignIn() {
     </>
   );
 }
+
+SignIn.propTypes = {
+  setCurrentUser: PropTypes.func
+};
 
 export default SignIn;

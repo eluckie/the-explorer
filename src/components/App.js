@@ -15,7 +15,9 @@ function App() {
 
   return (
     <Router>
-      <Header/>
+      <Header
+        currentUser={currentUser}
+        setCurrentUser={handleSettingCurrentUser}/>
       <Routes>
         <Route path="/sign-in" element={<SignIn
           setCurrentUser={handleSettingCurrentUser}/>}/>
