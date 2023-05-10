@@ -4,7 +4,7 @@ function AddPark() {
   return (
     <>
       <h3>add park form</h3>
-      <Link to="/"><button>cancel</button></Link>
+      <Link to="/"><p>cancel</p></Link>
     </>
   );
 }
