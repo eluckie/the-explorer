@@ -6,7 +6,7 @@ function Park(props) {
   return (
     <>
       <div onClick={() => props.whenParkClicked(props.parkId)}>
-        <h3>{props.name}</h3>
+        <h3 id="dark-green-accent">{props.name}</h3>
         <h5>{props.city}, {props.state}</h5>
         <p>
           {`${props.nationalPark}` === `${true}` ? "National Park" : "State Park"}

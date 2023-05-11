@@ -22,17 +22,35 @@ function ParkList(props) {
   }
 
   const divStyles = {
-    border: "2px solid black",
+    border: "2px solid rgb(135, 104, 62)",
     borderRadius: "0.7rem",
     width: 300,
     display: "inline-block",
     margin: "6px"
-  };
+  }
+
   const pageNumberStyles = {
     fontSize: 24,
     display: "inline",
-    padding: 10
-  };
+    padding: 10,
+    fontWeight: "bold"
+  }
+
+  const buttonStyles = {
+    backgroundColor: "rgb(135, 104, 62)",
+    borderColor: "rgb(135, 104, 62)"
+  }
+
+  const matchingParkStyles = {
+    color: "rgb(135, 104, 62)",
+    fontSize: 12
+  }
+
+  const perPageStyles = {
+    borderColor: "rgb(135, 104, 62)",
+    borderRadius: "0.7rem",
+    padding: 6
+  }
 
   if (parkList.length === 0) {
     return (
@@ -40,22 +58,25 @@ function ParkList(props) {
         <br/>
         <h2>
           there are no matching parks in<br/>
-          {`${city}` && `${state}` ? `${cityName}, ${stateName}` : `${cityName} ${stateName}`}
+          <span id="dark-green-accent">
+            {`${city}` && `${state}` ? `${cityName}, ${stateName}` : `${cityName} ${stateName}`}
+          </span>
         </h2>
-        <p>
+        <p style={matchingParkStyles}>
           try updating your filter parameters<br/>
           or<br/>
           click the reset all button
         </p>
+        <br/><br/>
       </>
     )
   } else {
     return (
       <>
         <br/>
-        {`${currentPage}` === `${1}` ? "" : <button onClick={onPreviousClick}>&lt;</button>}
+        {`${currentPage}` === `${1}` ? "" : <button style={buttonStyles} onClick={onPreviousClick}>&lt;</button>}
         <p style={pageNumberStyles}>{currentPage}</p>
-        {`${findPagesNeeded()}` === `${currentPage}` ? "" : <button id="next-page-btn" onClick={onNextClick}>&gt;</button>}
+        {`${findPagesNeeded()}` === `${currentPage}` ? "" : <button style={buttonStyles} id="next-page-btn" onClick={onNextClick}>&gt;</button>}
         <br/><br/>
         {parkList.map((park) =>
           <div style={divStyles} key={park.parkId}>
@@ -70,15 +91,15 @@ function ParkList(props) {
           </div>
         )}
         <br/>
-        <p>{matchingParkCount} parks</p>
+        <p style={matchingParkStyles}>{matchingParkCount} parks</p>
         <form id="page-size" onSubmit={handleUpdatePageSize}>
-          <select id="page">
+          <select style={perPageStyles} id="page">
             <option value="10">10 per page</option>
             <option value="25">25 per page</option>
             <option value="50">50 per page</option>
             <option value="100">view all</option>
           </select>
-          <button type="submit">update</button>
+          <button style={buttonStyles} type="submit">update</button>
         </form>
         <br/>
       </>

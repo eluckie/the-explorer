@@ -10,6 +10,12 @@ function SignUp(props) {
 
   const navigate = useNavigate();
 
+  const textInputStyles = {
+    borderColor: "rgb(150, 184, 115)",
+    borderRadius: "0.7rem",
+    padding: 6
+  }
+
   function handleSignUp(e) {
     e.preventDefault();
     const email = e.target.email.value;
@@ -36,16 +42,19 @@ function SignUp(props) {
       {signUpSuccess}
       <form onSubmit={handleSignUp}>
         <input
+          style={textInputStyles}
           type="text"
           name="email"
           placeholder="email" />
         <br/>
         <input
+          style={textInputStyles}
           type="password"
           name="password"
           placeholder="password" />
         <br/>
         <input
+          style={textInputStyles}
           type="password"
           name="confirmPassword"
           placeholder="confirm password" />

@@ -10,6 +10,12 @@ function SignIn(props) {
 
   const navigate = useNavigate();
 
+  const textInputStyles = {
+    borderColor: "rgb(150, 184, 115)",
+    borderRadius: "0.7rem",
+    padding: 6
+  }
+
   function handleSignIn(e) {
     e.preventDefault();
     const email = e.target.email.value.toLowerCase();
@@ -27,15 +33,17 @@ function SignIn(props) {
 
   return (
     <>
-      <br/>
+      <h1>log in</h1>
       {signInSuccess}
       <form id="sign-in" onSubmit={handleSignIn}>
         <input
+          style={textInputStyles}
           type="text"
           name="email"
           placeholder="email"/>
         <br/>
         <input
+          style={textInputStyles}
           type="password"
           name="password"
           placeholder="password"/>

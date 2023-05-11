@@ -4,6 +4,17 @@ import PropTypes from "prop-types";
 function EditPark(props) {
   const { park, currentUser, onParkEdit } = props;
 
+  const textInputStyles = {
+    borderColor: "rgb(150, 184, 115)",
+    borderRadius: "0.7rem",
+    padding: 6,
+    width: 260
+  }
+
+  const center = {
+    textAlign: "center"
+  }
+
   function handleEditParkFormSubmission(e) {
     e.preventDefault();
     let name = park.name;
@@ -51,38 +62,45 @@ function EditPark(props) {
   } else {
     return (
       <>
-        <h2>edit {park.name}</h2>
+        <h2>
+          currently editing<br/>
+          <span id="dark-green-accent">{park.name}</span>
+          </h2>
         <form id="edit-park" onSubmit={handleEditParkFormSubmission}>
           <input
+            style={textInputStyles}
             type="text"
             name="name"
             placeholder={park.name}/>
           <br/>
           <input
+            style={textInputStyles}
             type="text"
             name="city"
             placeholder={park.city}/>
           <br/>
           <input
+            style={textInputStyles}
             type="text"
             name="state"
             placeholder={park.state}/>
           <br/>
-          <select id="parkType">
+          <select style={textInputStyles} id="parkType">
           {`${park.statePark}` === `${true}` ?
             <>
-            <option value="statePark">state park</option>
-            <option value="nationalPark">national park</option>
+            <option style={center} value="statePark">state park</option>
+            <option style={center} value="nationalPark">national park</option>
             </> :
             <>
-              <option value="nationalPark">national park</option>
-              <option value="statePark">state park</option>
+              <option style={center} value="nationalPark">national park</option>
+              <option style={center} value="statePark">state park</option>
             </>}
           </select>
           <br/><br/>
           <button type="submit">update</button>
         </form>
         <Link to="/details"><p>cancel</p></Link>
+        <br/>
       </>
     );
   }

@@ -46,14 +46,6 @@ function Header(props) {
     lineHeight: "0.1em"
   }
 
-  const buttonStyles = {
-    backgroundColor: "rgb(150, 184, 115)",
-    borderColor: "rgb(150, 184, 115)",
-    borderRadius: "0.7rem",
-    padding: 6,
-    margin: 4
-  }
-
   if (!currentUser) {
     return (
       <>
@@ -61,8 +53,8 @@ function Header(props) {
         <div style={divStyles}>
           <p style={headerStyles}>the Explorer</p>
           <p>and into the forest I go, to lose my mind and find my soul</p>
-          <Link to="/sign-up"><button style={buttonStyles}>sign up</button></Link>
-          <Link to="/sign-in"><button style={buttonStyles}>log in</button></Link>
+          <Link to="/sign-up"><button>sign up</button></Link>
+          <Link to="/sign-in"><button>log in</button></Link>
         </div>
         <p style={userNameStyles}>{signOutSuccess}</p>
         <hr/>
@@ -75,8 +67,8 @@ function Header(props) {
         <div style={divStyles}>
           <p style={headerStyles}>the Explorer</p>
           <p>and into the forest I go, to lose my mind and find my soul</p>
-          <Link to="/add-park"><button style={buttonStyles}>add new park</button></Link>
-          <button onClick={handleSignOut} style={buttonStyles}>log out</button>
+          <Link to="/add-park"><button>add new park</button></Link>
+          <button onClick={handleSignOut}>log out</button>
         </div>
         <p style={userNameStyles}>{currentUser.email}</p>
         <hr/>

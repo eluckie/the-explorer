@@ -15,3 +15,38 @@ code {
 test {
   color: rgb(150, 184, 115);
 }
+
+button {
+  background-color: rgb(150, 184, 115);
+  border-color: rgb(150, 184, 115);
+  border-radius: 0.7rem;
+  padding: 6px;
+  margin: 4px;
+}
+
+#brown-accent {
+  color: rgb(135, 104, 62);
+}
+
+#green-accent {
+  color: rgb(150, 184, 115);
+}
+
+#dark-green-accent {
+  color: rgb(98, 121, 76);
+}
+
+a {
+  text-decoration: none;
+  color: rgb(135, 104, 62);
+}
+
+a:hover {
+  color: rgb(98, 121, 76);
+  font-size: larger;
+}
+
+p.pLinks:hover {
+  color: rgb(98, 121, 76);
+  font-size: larger;
+}

@@ -4,6 +4,17 @@ import PropTypes from "prop-types";
 function AddPark(props) {
   const { currentUser, onNewParkCreation } = props;
 
+  const textInputStyles = {
+    borderColor: "rgb(150, 184, 115)",
+    borderRadius: "0.7rem",
+    padding: 6,
+    width: 260
+  }
+
+  const center = {
+    textAlign: "center"
+  }
+
   function handleNewParkFormSubmission(e) {
     e.preventDefault();
     let parkType;
@@ -36,26 +47,29 @@ function AddPark(props) {
   } else {
     return (
       <>
-        <br/>
+        <h1 id="dark-green-accent">add a new park</h1>
         <form id="add-park" onSubmit={handleNewParkFormSubmission}>
           <input
+            style={textInputStyles}
             type="text"
             name="name"
             placeholder="park name"/>
           <br/>
           <input
+            style={textInputStyles}
             type="text"
             name="city"
             placeholder="city name"/>
           <br/>
           <input
+            style={textInputStyles}
             type="text"
             name="state"
             placeholder="state name"/>
           <br/>
-          <select id="parkType">
-            <option value="statePark">state park</option>
-            <option value="nationalPark">national park</option>
+          <select style={textInputStyles} id="parkType">
+            <option style={center} value="statePark">state park</option>
+            <option style={center} value="nationalPark">national park</option>
           </select>
           <br/><br/>
           <button type="submit">add park</button>

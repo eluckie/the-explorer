@@ -27,14 +27,6 @@ function FilterParks(props) {
     color: "rgb(135, 104, 62)"
   }
 
-  const buttonStyles = {
-    backgroundColor: "rgb(150, 184, 115)",
-    borderColor: "rgb(150, 184, 115)",
-    borderRadius: "0.7rem",
-    padding: 6,
-    margin: 4
-  }
-
   const filterFormStyles = {
     display: "inline-block",
     paddingLeft: 40,
@@ -72,7 +64,7 @@ function FilterParks(props) {
               <input type="radio" name="parkType" value="statePark"/>
               State Parks
             </label><br />
-            <button style={buttonStyles} type="submit">apply</button>
+            <button type="submit">apply</button>
           </form>
         </div>
         <div style={filterFormStyles}>
@@ -97,7 +89,7 @@ function FilterParks(props) {
         </div>
       </div>
       <br/>
-      <button style={buttonStyles} onClick={onResetFilters}>reset all</button>
+      <button onClick={onResetFilters}>reset all</button>
       </div>
       <br/>
       <hr/>
