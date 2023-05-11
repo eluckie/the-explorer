@@ -118,6 +118,42 @@ function ParkControl(props) {
     });
   }
 
+  const handleEditingSelectedPark = async (park) => {
+    setReady(false);
+
+    const parkData = {
+      parkId: park.parkId,
+      name: park.name,
+      city: park.city,
+      state: park.state,
+      statePark: park.statePark,
+      nationalPark: park.nationalPark
+    };
+
+    await fetch(`http://localhost:5002/api/Parks/${park.parkId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(parkData)
+    })
+    .then((response) => {
+      if (!response.ok) {
+        const message = `An error has occurred: ${response.status}: ${response.statusText}`;
+        throw new Error(message);
+      }
+    })
+    .then(() => {
+      setSelectedPark(park)
+      setReady(true)
+      navigate("/details")
+    })
+    .catch((error) => {
+      setError(error)
+      setReady(true)
+    });
+  }
+
   const handleRefreshParkList = () => {
     fetch(`${url}`)
       .then(response => {
@@ -174,7 +210,11 @@ function ParkControl(props) {
   }, [url])
 
   if(error) {
-    return <h3>There was an error: {error.message}</h3>
+    return (
+      <>
+        <h3>There was an error: {error.message}</h3>
+      </>
+    )
   } else if (!ready) {
     return <h1>... l o a d i n g ...</h1>
   } else {
@@ -185,7 +225,8 @@ function ParkControl(props) {
           onNewParkCreation={handleAddingNewPark}/>}/>
         <Route path="/edit-park" element={<EditPark
           park={selectedPark}
-          currentUser={currentUser}/>}/>
+          currentUser={currentUser}
+          onParkEdit={handleEditingSelectedPark}/>}/>
         <Route path="/delete-park" element={<DeleteConfirmation
           park={selectedPark}
           currentUser={currentUser}

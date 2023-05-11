@@ -41,14 +41,16 @@ function FilterParks(props) {
         <input
           type="text"
           name="cityName"
-          placeholder={`${city}` ? `${cityName}` : "search by city"}/>
+          placeholder={`${city}` ? `${cityName}` : "search by city"}
+          defaultValue={`${city}` ? `${cityName}` : ""}/>
         <button type="submit">🔎</button>
       </form>
       <form id="state-search" onSubmit={handleUpdateState}>
         <input
           type="text"
           name="stateName"
-          placeholder={`${state}` ? `${stateName}` : "search by state"}/>
+          placeholder={`${state}` ? `${stateName}` : "search by state"}
+          defaultValue={`${state}` ? `${stateName}` : ""}/>
         <button type="submit">🔎</button>
       </form>
       <br/><br/>

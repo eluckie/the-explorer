@@ -33,6 +33,7 @@ function Header(props) {
           <p>and into the forest I go, to lose my mind and find my soul</p>
           <Link to="/sign-up"><button>sign up</button></Link>
           <Link to="/sign-in"><button>log in</button></Link>
+          <p style={userStyles}>{signOutSuccess}</p>
         </div>
       </>
     );

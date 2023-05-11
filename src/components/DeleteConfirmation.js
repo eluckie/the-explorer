@@ -18,7 +18,7 @@ function DeleteConfirmation(props) {
     return (
       <>
         <h2>
-          are you sure you want to remove<br/>
+          are you sure you want to delete<br/>
           {park.name}?
         </h2>
         <button onClick={() => onParkDeletion(park.parkId)}>confirm delete</button>
