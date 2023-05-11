@@ -1,5 +1,4 @@
 import Icon from "./../img/tree.png";
-import { Link } from "react-router-dom";
 
 function Footer() {
   const divStyles = {
@@ -10,7 +9,7 @@ function Footer() {
 
   return (
     <>
-      <Link to="/"><div style={divStyles}></div></Link>
+      <div style={divStyles}></div>
     </>
   );
 }

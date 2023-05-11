@@ -68,6 +68,10 @@ function ParkControl(props) {
     setNatlPark("");
     setCity("");
     setState("");
+  }
+
+  const handleClearForms = () => {
+    handleResetFilters();
     document.getElementById("state-or-natl").reset();
     document.getElementById("city-search").reset();
     document.getElementById("state-search").reset();
@@ -138,7 +142,9 @@ function ParkControl(props) {
     setReady(false);
     fetch(`http://localhost:5002/api/Parks/${id}`, { method: "DELETE" })
       .then(() => {
-        handleRefreshParkList()
+        setMainParkList(mainParkList.filter(park => park.parkId !== id));
+        setMatchingParkCount(matchingParkCount - 1)
+        navigate("/")
         setReady(true)
       })
       .catch((error) => {
@@ -194,7 +200,9 @@ function ParkControl(props) {
               onUpdateParkType={handleUpdateParkType}
               onUpdateCity={handleUpdateCity}
               onUpdateState={handleUpdateState}
-              onResetFilters={handleResetFilters}/>
+              onResetFilters={handleClearForms}
+              city={city}
+              state={state}/>
             <ParkList
               parkList={mainParkList}
               matchingParkCount={matchingParkCount}

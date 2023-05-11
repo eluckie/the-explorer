@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
 
 function FilterParks(props) {
-  const { onResetFilters, onUpdateParkType, onUpdateCity, onUpdateState } = props;
+  const { onResetFilters, onUpdateParkType, onUpdateCity, onUpdateState, city, state } = props;
+
+  const cityName = city.slice(6);
+  const stateName = state.slice(7);
 
   function handleUpdateParkType(e) {
     e.preventDefault();
@@ -38,14 +41,14 @@ function FilterParks(props) {
         <input
           type="text"
           name="cityName"
-          placeholder="search by city"/>
+          placeholder={`${city}` ? `${cityName}` : "search by city"}/>
         <button type="submit">🔎</button>
       </form>
       <form id="state-search" onSubmit={handleUpdateState}>
         <input
           type="text"
           name="stateName"
-          placeholder="search by state"/>
+          placeholder={`${state}` ? `${stateName}` : "search by state"}/>
         <button type="submit">🔎</button>
       </form>
       <br/><br/>
@@ -58,7 +61,9 @@ FilterParks.propTypes = {
   onResetFilters: PropTypes.func,
   onUpdateParkType: PropTypes.func,
   onUpdateCity: PropTypes.func,
-  onUpdateState: PropTypes.func
+  onUpdateState: PropTypes.func,
+  city: PropTypes.string,
+  state: PropTypes.string
 };
 
 export default FilterParks;
