@@ -28,8 +28,6 @@ function SignIn(props) {
   return (
     <>
       <br/>
-      <hr/>
-      <br/>
       {signInSuccess}
       <form id="sign-in" onSubmit={handleSignIn}>
         <input

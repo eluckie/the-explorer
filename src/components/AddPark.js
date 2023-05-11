@@ -36,6 +36,7 @@ function AddPark(props) {
   } else {
     return (
       <>
+        <br/>
         <form id="add-park" onSubmit={handleNewParkFormSubmission}>
           <input
             type="text"
@@ -45,12 +46,12 @@ function AddPark(props) {
           <input
             type="text"
             name="city"
-            placeholder="city"/>
+            placeholder="city name"/>
           <br/>
           <input
             type="text"
             name="state"
-            placeholder="state"/>
+            placeholder="state name"/>
           <br/>
           <select id="parkType">
             <option value="statePark">state park</option>

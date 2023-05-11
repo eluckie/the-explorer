@@ -43,7 +43,6 @@ function EditPark(props) {
     return (
       <>
         <br/>
-        <hr/>
         <h2>whoopsies! you shouldn't be here</h2>
         <Link to="/">go home</Link>
         <br/><br/>
@@ -52,7 +51,6 @@ function EditPark(props) {
   } else {
     return (
       <>
-        <hr/>
         <h2>edit {park.name}</h2>
         <form id="edit-park" onSubmit={handleEditParkFormSubmission}>
           <input

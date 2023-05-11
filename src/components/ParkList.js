@@ -37,8 +37,7 @@ function ParkList(props) {
   if (parkList.length === 0) {
     return (
       <>
-        <hr/>
-        <br/><br/>
+        <br/>
         <h2>
           there are no matching parks in<br/>
           {`${city}` && `${state}` ? `${cityName}, ${stateName}` : `${cityName} ${stateName}`}
@@ -53,8 +52,7 @@ function ParkList(props) {
   } else {
     return (
       <>
-        <hr/>
-        <br/><br/>
+        <br/>
         {`${currentPage}` === `${1}` ? "" : <button onClick={onPreviousClick}>&lt;</button>}
         <p style={pageNumberStyles}>{currentPage}</p>
         {`${findPagesNeeded()}` === `${currentPage}` ? "" : <button id="next-page-btn" onClick={onNextClick}>&gt;</button>}

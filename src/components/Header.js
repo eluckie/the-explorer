@@ -35,6 +35,7 @@ function Header(props) {
           <Link to="/sign-in"><button>log in</button></Link>
           <p style={userStyles}>{signOutSuccess}</p>
         </div>
+        <hr/>
       </>
     );
   } else {
@@ -47,6 +48,7 @@ function Header(props) {
         <button onClick={handleSignOut}>log out</button>
         <p style={userStyles}>{currentUser.email}</p>
       </div>
+      <hr/>
       </>
     );
   }
