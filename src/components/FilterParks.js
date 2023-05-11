@@ -21,40 +21,85 @@ function FilterParks(props) {
     onUpdateState((e.target.stateName.value).toLowerCase());
   }
 
+  const titleStyles = {
+    textAlign: "left",
+    margin: 20,
+    color: "rgb(135, 104, 62)"
+  }
+
+  const buttonStyles = {
+    backgroundColor: "rgb(150, 184, 115)",
+    borderColor: "rgb(150, 184, 115)",
+    borderRadius: "0.7rem",
+    padding: 6,
+    margin: 4
+  }
+
+  const filterFormStyles = {
+    display: "inline-block",
+    paddingLeft: 40,
+    paddingRight: 30
+  }
+
+  const searchButtonStyles = {
+    backgroundColor: "white",
+    border: "none"
+  }
+
+  const divStyles = {
+    width: 640,
+    margin: "auto"
+  }
+
+  const textInputStyles = {
+    borderColor: "rgb(150, 184, 115)",
+    borderRadius: "0.7rem",
+    padding: 6
+  }
+
   return (
     <>
-      <h4>filters</h4>
-      <form id="state-or-natl" onSubmit={handleUpdateParkType}>
-        <label>
-          <input type="radio" name="parkType" value="nationalPark" defaultChecked/>
-          National Parks
-        </label><br />
-        <label>
-          <input type="radio" name="parkType" value="statePark"/>
-          State Parks
-        </label><br />
-        <button type="submit">apply</button>
-      </form>
+      <div style={divStyles}>
+      <h4 style={titleStyles}>filters</h4>
+      <div>
+        <div style={filterFormStyles}>
+          <form id="state-or-natl" onSubmit={handleUpdateParkType}>
+            <label>
+              <input type="radio" name="parkType" value="nationalPark" defaultChecked/>
+              National Parks
+            </label><br />
+            <label>
+              <input type="radio" name="parkType" value="statePark"/>
+              State Parks
+            </label><br />
+            <button style={buttonStyles} type="submit">apply</button>
+          </form>
+        </div>
+        <div style={filterFormStyles}>
+          <form id="city-search" onSubmit={handleUpdateCity}>
+            <input
+              style={textInputStyles}
+              type="text"
+              name="cityName"
+              placeholder="search by city"
+              defaultValue={`${city}` ? `${cityName}` : ""}/>
+            <button style={searchButtonStyles} type="submit">🔎</button>
+          </form>
+          <form id="state-search" onSubmit={handleUpdateState}>
+            <input
+              style={textInputStyles}
+              type="text"
+              name="stateName"
+              placeholder="search by state"
+              defaultValue={`${state}` ? `${stateName}` : ""}/>
+            <button style={searchButtonStyles} type="submit">🔎</button>
+          </form>
+        </div>
+      </div>
       <br/>
-      <form id="city-search" onSubmit={handleUpdateCity}>
-        <input
-          type="text"
-          name="cityName"
-          placeholder="search by city"
-          defaultValue={`${city}` ? `${cityName}` : ""}/>
-        <button type="submit">🔎</button>
-      </form>
-      <form id="state-search" onSubmit={handleUpdateState}>
-        <input
-          type="text"
-          name="stateName"
-          placeholder="search by state"
-          defaultValue={`${state}` ? `${stateName}` : ""}/>
-        <button type="submit">🔎</button>
-      </form>
-      <br/><br/>
-      <button onClick={onResetFilters}>reset all</button>
-      <br/><br/>
+      <button style={buttonStyles} onClick={onResetFilters}>reset all</button>
+      </div>
+      <br/>
       <hr/>
     </>
   );
