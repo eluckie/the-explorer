@@ -84,11 +84,9 @@ If adding the new park is successful, user is redirected to the new park's detai
 
 ## Stretch Plans
 
-* Styling: fonts!
-* Add a ``RANDOM`` endpoint that randomly returns a park.
-* Add a second custom endpoint that accepts parameters. Example: a ``SEARCH`` route that allows users to search by specific park names.
 * Add a light & dark mode
 * Add additional info to parks API info - activities, landmarks, etc.
+* Host API so that project is accessible at all times
 
 ## License
 

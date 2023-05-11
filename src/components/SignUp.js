@@ -39,7 +39,7 @@ function SignUp(props) {
 
   return (
     <>
-      <h1>Sign Up</h1>
+      <h1>sign up</h1>
       {signUpSuccess}
       <form onSubmit={handleSignUp}>
         <input
