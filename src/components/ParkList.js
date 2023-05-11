@@ -49,7 +49,10 @@ function ParkList(props) {
   const perPageStyles = {
     borderColor: "rgb(135, 104, 62)",
     borderRadius: "0.7rem",
-    padding: 6
+    padding: 6,
+    paddingTop: 8,
+    fontFamily: "Braah One, sans-serif",
+    textAlign: "center"
   }
 
   if (parkList.length === 0) {
@@ -91,7 +94,7 @@ function ParkList(props) {
           </div>
         )}
         <br/>
-        <p style={matchingParkStyles}>{matchingParkCount} parks</p>
+        <p id="accent-font" style={matchingParkStyles}>{matchingParkCount} parks</p>
         <form id="page-size" onSubmit={handleUpdatePageSize}>
           <select style={perPageStyles} id="page">
             <option value="10">10 per page</option>

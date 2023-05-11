@@ -24,7 +24,8 @@ function FilterParks(props) {
   const titleStyles = {
     textAlign: "left",
     margin: 20,
-    color: "rgb(135, 104, 62)"
+    color: "rgb(135, 104, 62)",
+    fontFamily: "Braah One, sans-serif"
   }
 
   const filterFormStyles = {
@@ -46,7 +47,8 @@ function FilterParks(props) {
   const textInputStyles = {
     borderColor: "rgb(150, 184, 115)",
     borderRadius: "0.7rem",
-    padding: 6
+    padding: 6,
+    paddingTop: 8
   }
 
   return (
@@ -56,11 +58,11 @@ function FilterParks(props) {
       <div>
         <div style={filterFormStyles}>
           <form id="state-or-natl" onSubmit={handleUpdateParkType}>
-            <label>
+            <label id="accent-font">
               <input type="radio" name="parkType" value="nationalPark" defaultChecked/>
               National Parks
             </label><br />
-            <label>
+            <label id="accent-font">
               <input type="radio" name="parkType" value="statePark"/>
               State Parks
             </label><br />

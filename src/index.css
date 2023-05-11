@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Braah+One&family=Zeyada&display=swap');
+
 body {
   text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -21,7 +23,13 @@ button {
   border-color: rgb(150, 184, 115);
   border-radius: 0.7rem;
   padding: 6px;
+  padding-top: 8px;
   margin: 4px;
+  font-family: 'Braah One', sans-serif;
+}
+
+h1, h2, h3, input {
+  font-family: 'Braah One', sans-serif;
 }
 
 #brown-accent {
@@ -34,6 +42,10 @@ button {
 
 #dark-green-accent {
   color: rgb(98, 121, 76);
+}
+
+#accent-font {
+  font-family: 'Braah One', sans-serif;
 }
 
 a {

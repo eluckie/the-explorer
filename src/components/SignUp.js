@@ -13,7 +13,8 @@ function SignUp(props) {
   const textInputStyles = {
     borderColor: "rgb(150, 184, 115)",
     borderRadius: "0.7rem",
-    padding: 6
+    padding: 6,
+    paddingTop: 8
   }
 
   function handleSignUp(e) {

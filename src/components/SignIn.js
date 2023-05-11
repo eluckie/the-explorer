@@ -13,7 +13,8 @@ function SignIn(props) {
   const textInputStyles = {
     borderColor: "rgb(150, 184, 115)",
     borderRadius: "0.7rem",
-    padding: 6
+    padding: 6,
+    paddingTop: 8
   }
 
   function handleSignIn(e) {
@@ -33,7 +34,7 @@ function SignIn(props) {
 
   return (
     <>
-      <h1>log in</h1>
+      <h1>Log In</h1>
       {signInSuccess}
       <form id="sign-in" onSubmit={handleSignIn}>
         <input

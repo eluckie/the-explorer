@@ -8,7 +8,9 @@ function EditPark(props) {
     borderColor: "rgb(150, 184, 115)",
     borderRadius: "0.7rem",
     padding: 6,
-    width: 260
+    width: 260,
+    paddingTop: 8,
+    fontFamily: "Braah One, sans-serif"
   }
 
   const center = {

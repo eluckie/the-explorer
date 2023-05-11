@@ -1,3 +1,5 @@
+
+
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { auth } from "./../firebase.js";
@@ -43,7 +45,15 @@ function Header(props) {
     fontSize: 60,
     fontWeight: "bold",
     color: "rgb(135, 104, 62)",
-    lineHeight: "0.1em"
+    lineHeight: "0.1em",
+    fontFamily: "Braah One, sans-serif"
+  }
+
+  const quoteStyles = {
+    lineHeight: "0.1em",
+    paddingTop: 1,
+    fontFamily: "Zeyada, cursive",
+    fontSize: 26
   }
 
   if (!currentUser) {
@@ -52,11 +62,12 @@ function Header(props) {
         <img style={logoStyles} src={Logo} alt="tree logo"/>
         <div style={divStyles}>
           <p style={headerStyles}>the Explorer</p>
-          <p>and into the forest I go, to lose my mind and find my soul</p>
+          <p style={quoteStyles}>and into the forest I go, to lose my mind and find my soul</p>
+          <br/>
           <Link to="/sign-up"><button>sign up</button></Link>
           <Link to="/sign-in"><button>log in</button></Link>
         </div>
-        <p style={userNameStyles}>{signOutSuccess}</p>
+        <p id="accent-font" style={userNameStyles}>{signOutSuccess}</p>
         <hr/>
       </>
     );
@@ -66,11 +77,12 @@ function Header(props) {
         <img style={logoStyles} src={Logo} alt="tree logo"/>
         <div style={divStyles}>
           <p style={headerStyles}>the Explorer</p>
-          <p>and into the forest I go, to lose my mind and find my soul</p>
+          <p style={quoteStyles}>and into the forest I go, to lose my mind and find my soul</p>
+          <br/>
           <Link to="/add-park"><button>add new park</button></Link>
           <button onClick={handleSignOut}>log out</button>
         </div>
-        <p style={userNameStyles}>{currentUser.email}</p>
+        <p id="accent-font" style={userNameStyles}>{currentUser.email}</p>
         <hr/>
       </>
     );
