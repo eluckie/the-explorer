@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Park from "./Park";
 
 function ParkList(props) {
-  const { onPreviousClick, onNextClick, parkList, currentPage, matchingParkCount, pageSize, onUpdatePageSize, onParkSelection } = props;
+  const { onPreviousClick, onNextClick, parkList, currentPage, matchingParkCount, pageSize, onUpdatePageSize, onParkSelection, city, state } = props;
+
+  const cityName = city.slice(6);
+  const stateName = state.slice(7);
 
   const findPagesNeeded = () => {
     const remainder = matchingParkCount % pageSize;
@@ -37,7 +39,10 @@ function ParkList(props) {
       <>
         <hr/>
         <br/><br/>
-        <h2>there are no matching parks</h2>
+        <h2>
+          there are no matching parks in<br/>
+          {`${city}` && `${state}` ? `${cityName}, ${stateName}` : `${cityName} ${stateName}`}
+        </h2>
         <p>
           try updating your filter parameters<br/>
           or<br/>
@@ -87,7 +92,12 @@ ParkList.propTypes = {
   onPreviousClick: PropTypes.func,
   onNextClick: PropTypes.func,
   onUpdatePageSize: PropTypes.func,
-  currentPage: PropTypes.number
+  onParkSelection: PropTypes.func,
+  currentPage: PropTypes.number,
+  pageSize: PropTypes.number,
+  matchingParkCount: PropTypes.number,
+  city: PropTypes.string,
+  state: PropTypes.string
 };
 
 export default ParkList;

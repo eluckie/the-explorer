@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function DeleteConfirmation(props) {
-  const { park, currentUser } = props;
+  const { park, currentUser, onParkDeletion } = props;
 
   if (!currentUser) {
     return (
@@ -17,8 +17,11 @@ function DeleteConfirmation(props) {
   } else {
     return (
       <>
-        <h2>are you sure you want to delete {park.name}?</h2>
-        <button>confirm delete</button>
+        <h2>
+          are you sure you want to remove<br/>
+          {park.name}?
+        </h2>
+        <button onClick={() => onParkDeletion(park.parkId)}>confirm delete</button>
         <br/><br/>
         <Link to="/details">cancel</Link>
       </>
@@ -28,7 +31,8 @@ function DeleteConfirmation(props) {
 
 DeleteConfirmation.propTypes = {
   park: PropTypes.object,
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
+  onParkDeletion: PropTypes.func
 };
 
 export default DeleteConfirmation;

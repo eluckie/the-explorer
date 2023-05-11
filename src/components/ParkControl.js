@@ -90,7 +90,7 @@ function ParkControl(props) {
       nationalPark: newPark.nationalPark
     };
 
-    fetch("http://localhost:5002/api/Parks", {
+    await fetch("http://localhost:5002/api/Parks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -101,19 +101,50 @@ function ParkControl(props) {
       if (!response.ok) {
         const message = `An error has occurred: ${response.status}: ${response.statusText}`;
         throw new Error(message);
-      } else {
-        return response.json()
-        
       }
     })
     .then(() => {
+      setSelectedPark(newPark)
       setReady(true)
-      navigate("/")
+      navigate("/details")
     })
     .catch((error) => {
       setError(error)
       setReady(true)
     });
+  }
+
+  const handleRefreshParkList = () => {
+    fetch(`${url}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status}: ${response.statusText}`);
+        } else {
+          return response.json()
+        }
+      })
+      .then((jsonResponse) => {
+        setSelectedPark(null)
+        setMainParkList(jsonResponse.queriedParks)
+        setMatchingParkCount(jsonResponse.matchingParks)
+        navigate("/")
+      })
+      .catch((error) => {
+        setError(error)
+      });
+  }
+
+  const handleDeletingSelectedPark = (id) => {
+    setReady(false);
+    fetch(`http://localhost:5002/api/Parks/${id}`, { method: "DELETE" })
+      .then(() => {
+        handleRefreshParkList()
+        setReady(true)
+      })
+      .catch((error) => {
+        setError(error)
+        setReady(true)
+      });
   }
 
   useEffect(() => {
@@ -151,10 +182,12 @@ function ParkControl(props) {
           currentUser={currentUser}/>}/>
         <Route path="/delete-park" element={<DeleteConfirmation
           park={selectedPark}
-          currentUser={currentUser}/>}/>
+          currentUser={currentUser}
+          onParkDeletion={handleDeletingSelectedPark}/>}/>
         <Route path="/details" element={<ParkDetails
           park={selectedPark}
-          currentUser={currentUser}/>}/>
+          currentUser={currentUser}
+          onCancel={handleRefreshParkList}/>}/>
         <Route path="/" element={
           <>
             <FilterParks
@@ -167,6 +200,8 @@ function ParkControl(props) {
               matchingParkCount={matchingParkCount}
               currentPage={page}
               pageSize={pageSize}
+              city={city}
+              state={state}
               onNextClick={handleNextClick}
               onPreviousClick={handlePreviousClick}
               onUpdatePageSize={handleUpdatePageSize}

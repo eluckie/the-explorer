@@ -4,7 +4,7 @@ import StateIcon from "./../img/state.png";
 import NatlIcon from "./../img/natl.png";
 
 function ParkDetails(props) {
-  const { park, currentUser } = props;
+  const { park, currentUser, onCancel } = props;
 
   if (!currentUser) {
     return (
@@ -37,7 +37,7 @@ function ParkDetails(props) {
         <Link to="/edit-park"><button>edit park</button></Link>
         <Link to="/delete-park"><button>delete park</button></Link>
         <br/><br/>
-        <Link to="/">back to list</Link>
+        <p onClick={onCancel}>back to list</p>
         <br/><br/>
       </>
     );
@@ -46,7 +46,8 @@ function ParkDetails(props) {
 
 ParkDetails.propTypes = {
   park: PropTypes.object,
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
+  onCancel: PropTypes.func
 };
 
 export default ParkDetails;
