@@ -80,6 +80,7 @@ function ParkList(props) {
           </select>
           <button type="submit">update</button>
         </form>
+        <br/>
       </>
     );
   }
