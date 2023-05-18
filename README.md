@@ -19,7 +19,7 @@
 
 From the main home page, users are able to see a list of state and national parks. From this page, users may choose to apply filters which automatically update the list, browse the list of parks by clicking to buttons to flip through the pages, or update how many parks are viewable per page (at the bottom of the page). From the main list, users are able to click on any specific park to be taken to that park's details page.
 
-[Click here](https://eluckie.github.io/the-explorer/) to view the live version of this webpage.
+<!-- [Click here](https://eluckie.github.io/the-explorer/) to view the live version of this webpage. -->
 
 ### Filters
 
@@ -87,6 +87,7 @@ If adding the new park is successful, user is redirected to the new park's detai
 * Add a light & dark mode
 * Add additional info to parks API info - activities, landmarks, etc.
 * Host API so that project is accessible at all times
+* deploy
 
 ## License
 
